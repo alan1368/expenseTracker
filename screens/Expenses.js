@@ -9,8 +9,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 const Expenses = () => {
   return (
     <View>
-      <Navbar />
-      <View>
+      <Navbar title={'Total Expenses'} />
+      <View style={{backgroundColor: 'white'}}>
         <ExpensesItem
           selectedCategory={{
             id: 1,

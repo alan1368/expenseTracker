@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import {VictoryPie, VictoryLabel} from 'victory-native';
 import Data from '../data';
 
-const Chart = ({result}) => {
+const Chart = ({result, total}) => {
   return (
     <View style={styles.chartContainer}>
       <VictoryPie
@@ -11,12 +11,18 @@ const Chart = ({result}) => {
         innerRadius={50}
         colorScale={[
           'blueviolet',
-          'cadetblue',
-          'darkslateblue',
-          'indigo',
+          'mediumvioletred',
+          'limegreen',
+          'darkorange',
           'midnightblue',
+          'lightseagreen',
+          'teal',
         ]}
-        data={result.map(res => ({x: res.id, y: res.total}))}
+        data={result.map(res => ({
+          x: res.id,
+          y: res.total,
+          label: `${Math.floor((res.total / total) * 100)}%  ${res.id}`,
+        }))}
         style={{
           labels: {
             fontSize: 14,
@@ -37,7 +43,7 @@ const Chart = ({result}) => {
 };
 
 const styles = StyleSheet.create({
-  chartContainer: {},
+  chartContainer: {marginTop: -30},
 });
 
 export default Chart;

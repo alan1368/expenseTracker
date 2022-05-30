@@ -28,7 +28,7 @@ const ExpensesItem = ({selectedCategory}) => {
         />
         <Text>{item.title}</Text>
       </View>
-      <Text>{item.total} SEK</Text>
+      <Text style={{fontWeight: '600'}}>{item.total} SEK</Text>
     </View>
   );
   return (

@@ -43,25 +43,12 @@ const Home = () => {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <Text style={styles.title}>
-              Income:<Text style={{fontWeight: 'bold'}}> 1,254 sek</Text>
-            </Text>
-            <View
-              style={{
-                width: 1,
-                height: '80%',
-                backgroundColor: 'white',
-                opacity: 0.5,
-                alignSelf: 'center',
-              }}
-            />
-            <Text style={styles.title}>
-              Expense:<Text style={{fontWeight: 'bold'}}> {total} sek</Text>
-            </Text>
+            <Text style={styles.title}>Total Expense:</Text>
+            <Text style={[styles.title, styles.bold]}> {total} sek</Text>
           </View>
         </SafeAreaView>
 
-        <Chart result={result} />
+        <Chart result={result} total={total} />
       </View>
 
       <View
@@ -79,7 +66,7 @@ const Home = () => {
           />
         </View>
 
-        <Text style={{marginLeft: 20}}>Expenses</Text>
+        <Text style={{marginLeft: 20, marginBottom: 10}}>Expenses</Text>
         <ExpensesItem selectedCategory={selectedCategory} />
       </View>
     </View>
@@ -92,9 +79,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'azure',
-    fontSize: 16,
-    fontWeight: '200',
+    fontSize: 18,
+    fontWeight: '300',
     marginTop: 10,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
 });
 

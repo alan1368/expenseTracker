@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {icons} from '../utility';
 
-const Navbar = () => {
+const Navbar = ({title}) => {
   const navigation = useNavigation();
   return (
     <View
@@ -16,7 +16,7 @@ const Navbar = () => {
       }}>
       <SafeAreaView>
         <Text style={{fontSize: 20, color: 'snow', marginTop: 10}}>
-          Total Expenses
+          {title}
         </Text>
         {/* <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Image

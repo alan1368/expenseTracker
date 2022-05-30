@@ -73,7 +73,7 @@ const App = () => {
                   style={{
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'cadetblue',
+                    backgroundColor: '#1D3B54',
                     width: 60,
                     height: 60,
                     borderRadius: 50,

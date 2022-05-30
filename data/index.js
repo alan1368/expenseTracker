@@ -20,7 +20,7 @@ const makeIcon = icon => {
   }
 };
 
-const Data = [
+let Data = [
   {
     id: uuid.v4(),
     category: 'housing',
