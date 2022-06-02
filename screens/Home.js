@@ -1,11 +1,11 @@
 import {View, Text, StyleSheet, Dimensions, StatusBar} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Chart from '../components/Chart';
 import Category from '../components/Category';
 import ExpensesItem from '../components/ExpensesItem';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {icons} from '../utility';
-import Data from '../data';
+import {useExpense} from '../context/expense';
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState({
@@ -18,17 +18,38 @@ const Home = () => {
     console.log(category);
     setSelectedCategory(category);
   };
-  const result = [];
-  let total = 0;
-  Data.reduce((res, value) => {
-    if (!res[value.category]) {
-      res[value.category] = {id: value.category, total: 0};
-      result.push(res[value.category]);
-    }
-    res[value.category].total += value.total;
-    return res;
-  }, {});
-  const totalExpense = result.map(res => (total += res.total));
+  const {categoryExpense, totalExpense} = useExpense();
+  console.log('categoryexpens', categoryExpense);
+  console.log(totalExpense);
+  // const [data, setData] = useState(Data);
+  // const [categoryExpense, setCategoryExpense] = useState();
+  // const [totalExpense, setTotalExpense] = useState();
+
+  // const result = data.reduce((array, next) => {
+  //   if (!array[next.category]) {
+  //     array[next.category] = {category: next.category, total: 0};
+  //   }
+  //   array[next.category].total += next.total;
+  //   return array;
+  // }, {});
+
+  // const calculateTotalExpense = Object.values(categoryExpense).reduce(
+  //   (acc, obj) => {
+  //     return (acc += parseFloat(obj.total));
+  //   },
+  //   0,
+  // );
+
+  // Object.values(categoryExpense).map(rr => {
+  //   console.log(rr);
+  // });
+  // console.log(categoryExpense);
+
+  // useEffect(() => {
+  //   setCategoryExpense(result);
+  //   setTotalExpense(calculateTotalExpense);
+  // }, [data]);
+
   return (
     <View style={{backgroundColor: '#1D3B54', flex: 1}}>
       <View style={styles.header}>
@@ -44,11 +65,11 @@ const Home = () => {
               justifyContent: 'space-between',
             }}>
             <Text style={styles.title}>Total Expense:</Text>
-            <Text style={[styles.title, styles.bold]}> {total} sek</Text>
+            <Text style={[styles.title, styles.bold]}> {totalExpense} sek</Text>
           </View>
         </SafeAreaView>
 
-        <Chart result={result} total={total} />
+        <Chart result={Object.values(categoryExpense)} total={totalExpense} />
       </View>
 
       <View
@@ -58,6 +79,7 @@ const Home = () => {
           backgroundColor: 'white',
           padding: 15,
           flex: 1,
+          marginBottom: 60,
         }}>
         <View style={{height: 100}}>
           <Category
@@ -67,7 +89,7 @@ const Home = () => {
         </View>
 
         <Text style={{marginLeft: 20, marginBottom: 10}}>Expenses</Text>
-        <ExpensesItem selectedCategory={selectedCategory} />
+        <ExpensesItem selectedCategory={selectedCategory} style={{flex: 1}} />
       </View>
     </View>
   );

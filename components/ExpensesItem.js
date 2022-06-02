@@ -1,9 +1,13 @@
 import React from 'react';
 import {View, Text, FlatList, Image} from 'react-native';
 import Data from '../data';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {useExpense} from '../context/expense';
 
 const ExpensesItem = ({selectedCategory}) => {
-  const filtered = Data.filter(
+  const {data} = useExpense();
+
+  const filtered = data?.filter(
     item => item?.category === selectedCategory?.name?.toLowerCase(),
   );
 
@@ -33,7 +37,7 @@ const ExpensesItem = ({selectedCategory}) => {
   );
   return (
     <FlatList
-      data={selectedCategory?.name === 'All' ? Data : filtered}
+      data={selectedCategory?.name === 'All' ? data : filtered}
       renderItem={renderItem}
       keyExtractor={item => item.id}
     />

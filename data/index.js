@@ -26,7 +26,7 @@ let Data = [
     category: 'housing',
     icon: makeIcon('housing'),
     title: 'Hyra',
-    total: 100,
+    total: 5500,
   },
   {
     id: uuid.v4(),
@@ -40,7 +40,7 @@ let Data = [
     id: uuid.v4(),
     category: 'education',
     icon: makeIcon('education'),
-    title: 'KTH',
+    title: 'Litteratur',
     total: 500,
   },
   {

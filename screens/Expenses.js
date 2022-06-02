@@ -4,21 +4,21 @@ import Data from '../data';
 import ExpensesItem from '../components/ExpensesItem';
 import Navbar from '../components/Navbar';
 import {icons} from '../utility';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Expenses = () => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View>
+    <View style={{backgroundColor: 'white', flex: 1, marginBottom: 60}}>
       <Navbar title={'Total Expenses'} />
-      <View style={{backgroundColor: 'white'}}>
-        <ExpensesItem
-          selectedCategory={{
-            id: 1,
-            name: 'All',
-            icon: icons.all,
-          }}
-        />
-      </View>
+      <ExpensesItem
+        selectedCategory={{
+          id: 1,
+          name: 'All',
+          icon: icons.all,
+        }}
+      />
     </View>
   );
 };

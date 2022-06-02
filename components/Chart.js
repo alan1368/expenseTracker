@@ -19,9 +19,9 @@ const Chart = ({result, total}) => {
           'teal',
         ]}
         data={result.map(res => ({
-          x: res.id,
+          x: res.category,
           y: res.total,
-          label: `${Math.floor((res.total / total) * 100)}%  ${res.id}`,
+          label: `${Math.floor((res.total / total) * 100)}%  ${res.category}`,
         }))}
         style={{
           labels: {

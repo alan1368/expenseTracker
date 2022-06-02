@@ -6,32 +6,49 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Navbar from '../components/Navbar';
 import SelectCategory from '../components/SelectCategory';
 import uuid from 'react-native-uuid';
 import Data from '../data';
 import {icons} from '../utility';
+import {useExpense} from '../context/expense';
 
 const Add = () => {
   const [expense, setExpense] = useState();
   const [title, setTitle] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
+  const navigation = useNavigation();
+  const {addExpense} = useExpense();
 
-  useEffect(() => {
-    console.log('expense', expense);
-    console.log('title', title);
-    console.log('category', selectedCategory);
-  });
-  const addExpense = () => {
-    Data.push({
-      id: uuid.v4(),
-      category: selectedCategory.name,
-      icon: icons.kids,
-      title: title,
-      total: expense,
-    });
+  // const addExpense = () => {
+  //   Data.push({
+  //     id: uuid.v4(),
+  //     category: selectedCategory.name,
+  //     icon: icons.kids,
+  //     title: title,
+  //     total: expense,
+  //   });
+  //   setExpense('');
+  //   setTitle('');
+  //   setSelectedCategory('');
+  //   navigation.navigate('Home');
+  // };
+  const addHandler = () => {
+    addExpense(
+      selectedCategory.name,
+      icons[selectedCategory.name.toLowerCase()],
+      title,
+      expense,
+    );
+    setTitle('');
+    setExpense('');
+    setSelectedCategory('');
+    navigation.navigate('Home');
   };
+  console.log(selectedCategory);
+
   return (
     <View style={{flex: 1}}>
       <Navbar title={'Add Expense'} />
@@ -96,7 +113,7 @@ const Add = () => {
             borderRadius: 10,
             marginTop: 20,
           }}
-          onPress={() => addExpense}>
+          onPress={addHandler}>
           <Text style={{color: 'snow', fontSize: 18}}>Add Expense</Text>
         </TouchableOpacity>
       </SafeAreaView>

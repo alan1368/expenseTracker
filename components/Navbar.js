@@ -12,7 +12,6 @@ const Navbar = ({title}) => {
         height: 100,
         alignItems: 'center',
         paddingHorizontal: 20,
-        marginBottom: 10,
       }}>
       <SafeAreaView>
         <Text style={{fontSize: 20, color: 'snow', marginTop: 10}}>
